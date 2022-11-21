@@ -34,33 +34,29 @@ Statement *LetStatementModel::make_next(TokenStream *stream)
 
 		Token *nextToken = stream->peek_next();
 
-		if (nextToken->model_name() == TokenName::LET)
+		switch (nextToken->model_name())
 		{
+		case TokenName::LET:
 			stream->pop_next();
-			letToken = (LetToken *)nextToken;
-		}
-		else if (nextToken->model_name() == TokenName::IDENTIFIER)
-		{
+			letToken = (LetToken*)nextToken;
+			break;
+		case TokenName::IDENTIFIER:
 			stream->pop_next();
-			identifierToken = (IdentifierToken *)nextToken;
-		}
-		else if (nextToken->model_name() == TokenName::EQUALS)
-		{
+			identifierToken = (IdentifierToken*)nextToken;
+			break;
+		case TokenName::EQUALS:
 			stream->pop_next();
-			equalsToken = (EqualsToken *)nextToken;
-		}
-		else if (nextToken->model_name() == TokenName::LITERAL)
-		{
+			equalsToken = (EqualsToken*)nextToken;
+			break;
+		case TokenName::LITERAL:
 			stream->pop_next();
-			literalToken = (LiteralToken *)nextToken;
-		}
-		else if (nextToken->model_name() == TokenName::SEMICOLON)
-		{
+			literalToken = (LiteralToken*)nextToken;
+			break;
+		case TokenName::SEMICOLON:
 			stream->pop_next();
-			terminatorToken = (SemicolonToken *)nextToken;
-		}
-		else
-		{
+			terminatorToken = (SemicolonToken*)nextToken;
+			break;
+		default:
 			return nullptr;
 		}
 

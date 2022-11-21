@@ -33,14 +33,5 @@ int main(int argc, char const *argv[])
         printf("[Exception caught]\n%s\n", ex.what());
     }
 
-    // Lexer lexer = Lexer(code);
-    // std::vector<Token *> tokens = lex(&lexer);
-
-    // for (size_t i = 0; i < tokens.size(); i++)
-    // {
-    //     Token *curr_token = tokens[i];
-    //     std::printf("[main] [%lu] [%s] %s\n", i, typeid(curr_token).name(), curr_token->string().c_str());
-    // }
-
     return 0;
 }

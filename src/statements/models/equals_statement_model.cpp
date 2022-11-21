@@ -32,28 +32,24 @@ Statement *EqualsStatementModel::make_next(TokenStream *stream)
 
 		Token *nextToken = stream->peek_next();
 
-		if (nextToken->model_name() == TokenName::IDENTIFIER)
-		{
+		switch (nextToken->model_name()) {
+		case TokenName::IDENTIFIER:
 			stream->pop_next();
 			identifierToken = (IdentifierToken *)nextToken;
-		}
-		else if (nextToken->model_name() == TokenName::EQUALS)
-		{
+			break;
+		case TokenName::EQUALS:
 			stream->pop_next();
 			equalsToken = (EqualsToken *)nextToken;
-		}
-		else if (nextToken->model_name() == TokenName::LITERAL)
-		{
+			break;
+		case TokenName::LITERAL:
 			stream->pop_next();
 			literalToken = (LiteralToken *)nextToken;
-		}
-		else if (nextToken->model_name() == TokenName::SEMICOLON)
-		{
+			break;
+		case TokenName::SEMICOLON:
 			stream->pop_next();
 			terminatorToken = (SemicolonToken *)nextToken;
-		}
-		else
-		{
+			break;
+		default:
 			return nullptr;
 		}
 

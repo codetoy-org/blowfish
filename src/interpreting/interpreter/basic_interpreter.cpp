@@ -33,8 +33,6 @@ void BasicInterpreter::equals_statement(EqualsStatement *let_statement)
 	identCtx->assign<std::string>(lit->get_value(), identCtx->get_type());
 }
 
-std::unordered_map<std::string, std::string> stringLiterals;
-
 void BasicInterpreter::let_statement(LetStatement *let_statement)
 {
 	IdentifierToken *identifier = let_statement->get_identifier();

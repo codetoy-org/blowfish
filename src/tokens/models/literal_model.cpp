@@ -14,18 +14,24 @@ Token *LiteralModel::make_next(std::string code, int *idx)
         return nullptr;
     }
 
+    //If it starts with " then its a string
     if (code[0] == '"')
     {
         std::string literal;
 
+        //Copy all of the code into the string 'literal'
         do
         {
+            code = code.substr(1);
+
             literal += code[0];
             *idx += 1;
-
-            code = code.substr(1);
         } while (code[0] != '"');
 
+        //The loop still adds " to the end, so we chop it off
+        literal = literal.substr(0, literal.size() - 1);
+
+        //Increment the index again so the remaining is just another literal or a ;
         *idx += 1;
 
         return new LiteralToken(literal);
